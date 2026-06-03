@@ -17,8 +17,9 @@
     "docker:stop": "docker-compose -f docker/docker-compose.yml down",
     "docker:logs": "docker-compose -f docker/docker-compose.yml logs -f",
     "docker:deploy": "./scripts/docker-deploy.sh",
-    "cf:build": "next build && rm -rf .next/cache && cp _worker.js .next/ && cp -r functions .next/",
-    "cf:deploy": "wrangler pages deploy .next --project-name navsphere"
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
@@ -96,6 +97,7 @@
     "sharp": "^0.34.5",
     "tailwindcss": "4.1.12",
     "typescript": "5.1.6",
+    "@opennextjs/cloudflare": "^1.19.11",
     "wrangler": "^4.61.0"
   },
   "browser": {

@@ -3,7 +3,6 @@ import { auth } from '@/lib/auth'
 import { SUBMISSION_LABELS, parseSubmissionFromIssueBody } from '@/types/submission'
 import { getFileContent, commitFile } from '@/lib/github'
 
-export const runtime = 'edge'
 
 
 

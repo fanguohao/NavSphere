@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Standalone build for Cloudflare Pages
-  // Note: Most routes use 'edge' runtime which is compatible with Cloudflare
   output: 'standalone',
 
-  // Don't fail build on ESLint warnings
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -35,7 +32,6 @@ const nextConfig = {
       }
     ]
   },
-  // Cloudflare Pages configuration
   experimental: {
     serverActions: {
       allowedOrigins: ['localhost', 'newkit.site']
@@ -44,4 +40,7 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+export default nextConfig
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();

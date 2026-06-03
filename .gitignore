@@ -49,5 +49,6 @@ dist/cache/
 build/cache/
 /.venv/
 /.npm_cache/
-/.venv/
-/.npm_cache/
+
+# OpenNext
+.open-next/
