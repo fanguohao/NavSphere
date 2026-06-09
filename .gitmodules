@@ -1,0 +1,3 @@
+[submodule "src/navsphere/content"]
+	path = src/navsphere/content
+	url = git@github.com:fanguohao/navsphere-data.git

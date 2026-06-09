@@ -2,7 +2,11 @@
 
 ## 概述
 
-NavSphere 是基于 Next.js 15 的导航管理平台，数据存储在 GitHub 仓库的 JSON 文件中（无数据库）。支持三种部署方式：
+NavSphere 是基于 Next.js 15 的导航管理平台，采用**双仓库架构**（见 [ARCHITECTURE.md](ARCHITECTURE.md)）：
+- 代码仓库：`fanguohao/NavSphere`
+- 数据仓库：`fanguohao/navsphere-data`（以 Git Submodule 挂载在 `src/navsphere/content/`）
+
+数据存储在 GitHub 仓库的 JSON 文件中（无数据库）。支持三种部署方式：
 
 | 部署方式 | 适用场景 | 域名示例 |
 |---------|---------|---------|
@@ -30,7 +34,7 @@ wrangler login
 ### 1. 克隆并安装依赖
 
 ```bash
-git clone https://github.com/fanguohao/NavSphere.git
+git clone --recurse-submodules https://github.com/fanguohao/NavSphere.git
 cd NavSphere
 pnpm install
 ```
