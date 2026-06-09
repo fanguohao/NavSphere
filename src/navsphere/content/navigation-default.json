@@ -686,6 +686,143 @@
               "enabled": true
             }
           ]
+        },
+        {
+          "id": "ip-network-diagnostics-001",
+          "title": "IP检测与网络诊断",
+          "icon": "Globe",
+          "description": "IP质量、代理识别、归属地、风控、路由与延迟检测",
+          "enabled": true,
+          "items": [
+            {
+              "id": "ipdiag-spamhaus",
+              "title": "Spamhaus IP Check",
+              "href": "https://check.spamhaus.org",
+              "description": "查询 IP 是否存在垃圾邮件、滥用或信誉问题。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-whoer",
+              "title": "Whoer",
+              "href": "https://whoer.net/zh",
+              "description": "检测代理、匿名性、DNS 与浏览器指纹信息。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-ipdata",
+              "title": "ipdata",
+              "href": "https://ipdata.co",
+              "description": "查看 IP 地理位置、威胁情报、ASN 与代理相关信息。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-ip2location",
+              "title": "IP2Location",
+              "href": "https://ip2location.io",
+              "description": "查询 IP 归属地、ASN、代理与网络类型信息。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-ip234",
+              "title": "IP234 Fraud Check",
+              "href": "http://ip234.in/#fraud_check",
+              "description": "查看 IP 风控、欺诈检测与归属地详情。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-ping0",
+              "title": "Ping0",
+              "href": "https://ping0.cc",
+              "description": "查询 IP 详细信息、网络画像与可用性检测。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-skk",
+              "title": "SKK IP Query",
+              "href": "https://ip.skk.moe/query",
+              "description": "多数据源 IP 查询，适合查看归属地与网络识别结果。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-zxinc",
+              "title": "ZXinc IP Query",
+              "href": "https://ip.zxinc.org/ipquery/",
+              "description": "提供较详细的 IP 数据查询与来源比对。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-bczs",
+              "title": "BCZS IP Query",
+              "href": "https://ip.bczs.net/",
+              "description": "IP 地址查询与基础归属信息检测工具。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-cipcc",
+              "title": "CIP.CC",
+              "href": "https://cip.cc/",
+              "description": "快速查看当前 IP、运营商、归属地与网络出口信息。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-17ce",
+              "title": "17CE",
+              "href": "https://www.17ce.com/",
+              "description": "多地节点网站测速与网络可达性检测。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-findmyip",
+              "title": "FindMyIP",
+              "href": "https://findmyip.net",
+              "description": "检测本机 IP、代理信息以及 WebRTC 泄漏情况。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-iplark-home",
+              "title": "IPLark",
+              "href": "https://iplark.com",
+              "description": "本机 IP 查询入口，适合快速查看当前出口信息。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-iplark-search",
+              "title": "IPLark Search",
+              "href": "https://iplark.com/search",
+              "description": "多数据源 IP 查询页面，便于交叉比对归属地与网络类型。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-iplark-check",
+              "title": "IPLark Check",
+              "href": "https://iplark.com/check",
+              "description": "IP 质量、代理检测与风险判断入口。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            },
+            {
+              "id": "ipdiag-itdog",
+              "title": "ITDOG",
+              "href": "https://www.itdog.cn",
+              "description": "检测延迟、丢包、路由与全国多地网络质量。",
+              "icon": "/assets/images/default-website-icon.png",
+              "enabled": true
+            }
+          ]
         }
       ]
     },
