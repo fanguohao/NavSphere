@@ -45,7 +45,8 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
                 headers: {
                     'Authorization': `Bearer ${GITHUB_PAT}`,
                     'Accept': 'application/vnd.github+json',
-                    'X-GitHub-Api-Version': '2022-11-28'
+                    'X-GitHub-Api-Version': '2022-11-28',
+                    'User-Agent': 'NavSphere-App'
                 }
             }
         )
@@ -204,7 +205,8 @@ async function updateIssueLabels(issueNumber: string, addLabel: string, removeLa
             headers: {
                 'Authorization': `Bearer ${GITHUB_PAT}`,
                 'Accept': 'application/vnd.github+json',
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                'User-Agent': 'NavSphere-App'
             }
         }
     )
@@ -226,7 +228,8 @@ async function updateIssueLabels(issueNumber: string, addLabel: string, removeLa
                 'Authorization': `Bearer ${GITHUB_PAT}`,
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json',
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                'User-Agent': 'NavSphere-App'
             },
             body: JSON.stringify({ labels: newLabels })
         }
@@ -243,7 +246,8 @@ async function addIssueComment(issueNumber: string, body: string) {
                 'Authorization': `Bearer ${GITHUB_PAT}`,
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json',
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                'User-Agent': 'NavSphere-App'
             },
             body: JSON.stringify({ body })
         }
@@ -260,7 +264,8 @@ async function closeIssue(issueNumber: string) {
                 'Authorization': `Bearer ${GITHUB_PAT}`,
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json',
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                'User-Agent': 'NavSphere-App'
             },
             body: JSON.stringify({ state: 'closed' })
         }

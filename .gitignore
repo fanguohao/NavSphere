@@ -37,6 +37,9 @@ next-env.d.ts
 
 # 环境变量
 .env*.local
+
+# pnpm - we use pnpm-lock.yaml
+package-lock.json
 /.cloudflare/
 # Webpack 缓存
 cache/

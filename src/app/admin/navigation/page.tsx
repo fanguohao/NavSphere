@@ -90,44 +90,84 @@ export default function NavigationPage() {
   }
 
   const handleMoveToTop = async (id: string) => {
+    const currentItems = Array.isArray(items) ? [...items] : []
+    const index = currentItems.findIndex(item => item.id === id)
+    if (index <= 0) return
+
+    const originalItems = [...currentItems]
+    const [movedItem] = currentItems.splice(index, 1)
+    currentItems.unshift(movedItem)
+
+    await mutate(currentItems, { revalidate: false })
+
     try {
-      const response = await fetch(`/api/navigation/${id}/move-to-top`, {
-        method: 'POST'
+      const response = await fetch('/api/navigation/reorder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceIndex: index,
+          destinationIndex: 0,
+          itemId: id
+        })
       })
 
-      if (!response.ok) throw new Error('Failed to move')
+      if (!response.ok) {
+        await mutate(originalItems, { revalidate: false })
+        throw new Error('移动失败')
+      }
 
-      mutate()
+      await mutate()
       toast({
         title: "成功",
-        description: "移动成功"
+        description: "已移到顶部"
       })
     } catch (error) {
+      await mutate(originalItems, { revalidate: false })
       toast({
         title: "错误",
-        description: "移动失败",
+        description: "移动失败，已恢复原状",
         variant: "destructive"
       })
     }
   }
 
   const handleMoveToBottom = async (id: string) => {
+    const currentItems = Array.isArray(items) ? [...items] : []
+    const index = currentItems.findIndex(item => item.id === id)
+    if (index === -1 || index >= currentItems.length - 1) return
+
+    const originalItems = [...currentItems]
+    const [movedItem] = currentItems.splice(index, 1)
+    currentItems.push(movedItem)
+
+    await mutate(currentItems, { revalidate: false })
+
     try {
-      const response = await fetch(`/api/navigation/${id}/move-to-bottom`, {
-        method: 'POST'
+      const response = await fetch('/api/navigation/reorder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceIndex: index,
+          destinationIndex: currentItems.length - 1,
+          itemId: id
+        })
       })
 
-      if (!response.ok) throw new Error('Failed to move')
+      if (!response.ok) {
+        await mutate(originalItems, { revalidate: false })
+        throw new Error('移动失败')
+      }
 
-      mutate()
+      await mutate()
       toast({
         title: "成功",
-        description: "移动成功"
+        description: "已移到底部"
       })
     } catch (error) {
+      await mutate(originalItems, { revalidate: false })
       toast({
         title: "错误",
-        description: "移动失败",
+        description: "移动失败，已恢复原状",
         variant: "destructive"
       })
     }

@@ -44,7 +44,8 @@ export async function POST(request: NextRequest) {
                 'Authorization': `Bearer ${GITHUB_PAT}`,
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json',
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                'User-Agent': 'NavSphere-App'
             },
             body: JSON.stringify({
                 title: `[投稿] ${data.title}`,
@@ -102,7 +103,8 @@ export async function GET(request: NextRequest) {
                 headers: {
                     'Authorization': `Bearer ${GITHUB_PAT}`,
                     'Accept': 'application/vnd.github+json',
-                    'X-GitHub-Api-Version': '2022-11-28'
+                    'X-GitHub-Api-Version': '2022-11-28',
+                    'User-Agent': 'NavSphere-App'
                 }
             }
         )

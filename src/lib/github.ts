@@ -1,6 +1,53 @@
 import { auth } from '@/lib/auth'
 import { stringToBase64 } from '@/lib/buffer-utils'
 
+export async function getFileContentPublic(path: string) {
+  const owner = process.env.GITHUB_OWNER!
+  const repo = process.env.GITHUB_REPO!
+  const branch = process.env.GITHUB_BRANCH || 'main'
+  const pat = process.env.GITHUB_PAT
+
+  try {
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github.v3.raw',
+      'User-Agent': 'NavSphere-App',
+    }
+    if (pat) {
+      headers.Authorization = `token ${pat}`
+    }
+
+    const response = await fetch(apiUrl, { headers })
+
+    if (response.status === 404) {
+      if (path.includes('navigation.json')) {
+        return { navigationItems: [] }
+      }
+      return {}
+    }
+
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.statusText}`)
+    }
+
+    const text = await response.text()
+    try {
+      return JSON.parse(text)
+    } catch {
+      if (path.includes('navigation.json')) {
+        return { navigationItems: [] }
+      }
+      return {}
+    }
+  } catch (error) {
+    console.error('Error fetching file (public):', error)
+    if (path.includes('navigation.json')) {
+      return { navigationItems: [] }
+    }
+    return {}
+  }
+}
+
 export async function getFileContent(path: string) {
   const owner = process.env.GITHUB_OWNER!
   const repo = process.env.GITHUB_REPO!
@@ -11,13 +58,15 @@ export async function getFileContent(path: string) {
     const token = session?.user?.accessToken
 
     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`
-    const response = await fetch(apiUrl, {
-      headers: {
-        Accept: 'application/vnd.github.v3.raw',
-        Authorization: token ? `token ${token}` : '',
-        'User-Agent': 'NavSphere',
-      },
-    })
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github.v3.raw',
+      'User-Agent': 'NavSphere-App',
+    }
+    if (token) {
+      headers.Authorization = `token ${token}`
+    }
+
+    const response = await fetch(apiUrl, { headers })
 
     if (response.status === 404) {
       console.log(`File not found: ${path}, returning default data`)
@@ -31,8 +80,16 @@ export async function getFileContent(path: string) {
       throw new Error(`GitHub API error: ${response.statusText}`)
     }
 
-    const data = await response.json()
-    return data
+    const text = await response.text()
+    try {
+      return JSON.parse(text)
+    } catch {
+      console.error(`Failed to parse JSON from ${path}`)
+      if (path.includes('navigation.json')) {
+        return { navigationItems: [] }
+      }
+      return {}
+    }
   } catch (error) {
     console.error('Error fetching file:', error)
     if (path.includes('navigation.json')) {
