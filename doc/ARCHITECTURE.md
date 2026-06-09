@@ -9,7 +9,7 @@ NavSphere 由两个 Git 仓库组成：
 | **NavSphere** | 应用代码（Next.js） | `git@github.com:fanguohao/NavSphere.git` |
 | **navsphere-data** | 导航数据（JSON） | `git@github.com:fanguohao/navsphere-data.git` |
 
-数据仓库以 **Git Submodule** 方式挂载在代码仓库的 `src/navsphere/content/` 目录下。
+数据仓库以 **Git Submodule** 方式挂载在代码仓库的 `navsphere-data/` 目录下。数据文件位于 `navsphere-data/src/navsphere/content/`。
 
 ## 数据流向
 
@@ -48,15 +48,16 @@ git submodule init
 git submodule update
 
 # 进入数据子模块
-cd src/navsphere/content
+cd navsphere-data
+# 数据文件在 src/navsphere/content/ 中
 # 修改数据文件...
-git add .
+git add src/navsphere/content/
 git commit -m "update navigation data"
 git push
 
 # 回到代码仓库更新子模块引用
-cd ../..
-git add src/navsphere/content
+cd ..
+git add navsphere-data
 git commit -m "chore: update data submodule"
 git push
 ```
@@ -73,6 +74,7 @@ pnpm run deploy
 
 ## 注意事项
 
-- 不要直接在 `src/navsphere/content/` 中修改而不通过子模块提交
+- 数据子模块挂载在 `navsphere-data/`，数据文件路径为 `navsphere-data/src/navsphere/content/`
+- 不要直接在 `navsphere-data/` 中修改而不通过子模块提交
 - 如果需要在本地同时修改代码和数据，先提交数据，再提交代码中的子模块引用
 - `git status` 中看到 `src/navsphere/content` 被修改，表示子模块指针需要更新
